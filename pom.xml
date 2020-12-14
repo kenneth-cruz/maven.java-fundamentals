@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.DanyYanez</groupId>
+    <groupId>com.github.curriculeon</groupId>
     <artifactId>java-fundamentals</artifactId>
     <version>1.0</version>
 
@@ -13,11 +13,38 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>8</source> <!--compiled from java8-->
                     <target>8</target> <!--compiled to java8-->
                 </configuration>
             </plugin>
+            <plugin>
+				<!-- 2-plugin to create System Property variables -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<systemPropertyVariables>
+						<browser>chrome</browser>
+						<url></url>
+						<buildDirectory>${project.build.directory}</buildDirectory>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+			<!-- Build an executable JAR -->
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<version>3.1.0</version>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>com.github.curriculeon</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin>
         </plugins>
     </build>
 
@@ -26,7 +53,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
